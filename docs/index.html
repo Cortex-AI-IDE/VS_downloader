@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Video Saver: Free Open Source Video Downloader for Android (YouTube, Instagram, Facebook, TikTok)</title>
+<meta name="description" content="Video Saver is a free, open source Android video downloader for YouTube, Instagram, Facebook and TikTok. Paste a link, save the video as a standard H.264 MP4 file. No ads, no account, no tracking. GPL-3.0.">
+<link rel="canonical" href="https://cortex-ai-ide.github.io/VS_downloader/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="author" content="Video Saver contributors">
+<meta name="keywords" content="android video downloader, youtube downloader android, instagram video downloader, facebook video downloader, tiktok video downloader, open source downloader, yt-dlp android, kotlin app, mp4 downloader, free apk">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Video Saver">
+<meta property="og:title" content="Video Saver: Free Open Source Video Downloader for Android">
+<meta property="og:description" content="Download videos from YouTube, Instagram, Facebook and TikTok on Android. Saves standard H.264 MP4 files. Free, open source, no ads.">
+<meta property="og:url" content="https://cortex-ai-ide.github.io/VS_downloader/">
+<meta property="og:image" content="https://cortex-ai-ide.github.io/VS_downloader/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Video Saver app icon with the text: free open source video downloader for Android">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Video Saver: Free Open Source Video Downloader for Android">
+<meta name="twitter:description" content="YouTube, Instagram, Facebook and TikTok downloads on Android, saved as standard MP4 files. Free and open source.">
+<meta name="twitter:image" content="https://cortex-ai-ide.github.io/VS_downloader/og-image.png">
+
+<meta name="theme-color" content="#0F1115">
+<link rel="icon" href="icon-192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="icon-192.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://cortex-ai-ide.github.io/VS_downloader/#app",
+      "name": "Video Saver",
+      "alternateName": "VS Downloader",
+      "applicationCategory": "MultimediaApplication",
+      "applicationSubCategory": "Video downloader",
+      "operatingSystem": "Android 7.0 and newer",
+      "softwareVersion": "1.2.0",
+      "fileFormat": "application/vnd.android.package-archive",
+      "downloadUrl": "https://github.com/Cortex-AI-IDE/VS_downloader/releases",
+      "codeRepository": "https://github.com/Cortex-AI-IDE/VS_downloader",
+      "license": "https://www.gnu.org/licenses/gpl-3.0.html",
+      "isAccessibleForFree": true,
+      "inLanguage": "en",
+      "description": "Video Saver is a free and open source Android app that downloads videos from YouTube, Instagram, Facebook and TikTok and saves them on the device as standard H.264 MP4 files. It runs the yt-dlp engine locally, needs no account and contains no advertising or analytics.",
+      "featureList": [
+        "Download videos by pasting a link",
+        "Saves H.264 video in an MP4 container",
+        "Two concurrent downloads",
+        "Foreground service progress notification",
+        "Open, share and delete saved files",
+        "Self updating yt-dlp engine",
+        "No ads and no tracking"
+      ],
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "Video Saver contributors",
+        "url": "https://github.com/Cortex-AI-IDE"
+      },
+      "datePublished": "2026-11-09",
+      "dateModified": "2026-11-09"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://cortex-ai-ide.github.io/VS_downloader/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Video Saver?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Video Saver is a free, open source Android application that downloads videos from YouTube, Instagram, Facebook and TikTok. You paste a link, tap Download, and the video is saved to the Download/VideoSaver folder as a standard MP4 file. It runs the yt-dlp engine inside the app, so no server or account is involved."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which sites does the Video Saver app support?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "YouTube (including Shorts and live links), Instagram posts, reels and share links, Facebook videos, reels and fb.watch links, and TikTok video links including the short vm.tiktok.com and vt.tiktok.com share links. Because the engine is yt-dlp, most other sites that yt-dlp supports also work."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does TikTok say couldn't decode, select another video when uploading a downloaded file?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "That message appears when the file is not a standard MP4 with H.264 video and AAC audio. Older versions of the downloader could fall back to WebM, MKV or AV1 files, which the TikTok uploader cannot read. Video Saver 1.2.0 and newer always prefer H.264 inside an MP4 container. Delete the old file, update the app and download again."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Video Saver free and open source?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. It is released under the GNU General Public License version 3 and the full source code is on GitHub. There are no ads, no subscriptions and no paid features."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Video Saver collect personal data?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. The app has no analytics, no crash reporting and no advertising libraries. It does not ask for an account or a password. The only network traffic is the video download you request and the optional engine update."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which Android versions are supported?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Android 7.0 (API 24) and newer. The app targets Android 15 (API 35) and follows scoped storage rules, writing downloads through MediaStore into the public Download/VideoSaver folder."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can Video Saver download private or age restricted videos?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Private, age restricted and login walled videos need cookies from a signed in browser session, and the app does not import browser cookies. Public videos download normally."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Video Saver available on Google Play or F-Droid?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Not on Google Play, because its policy does not allow apps that download media from other platforms. The app is distributed as a direct APK from the GitHub releases page. An F-Droid listing is planned."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://cortex-ai-ide.github.io/VS_downloader/#site",
+      "url": "https://cortex-ai-ide.github.io/VS_downloader/",
+      "name": "Video Saver documentation",
+      "inLanguage": "en",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Video Saver contributors",
+        "url": "https://github.com/Cortex-AI-IDE"
+      }
+    }
+  ]
+}
+</script>
+
+<style>
+  :root {
+    --bg: #0f1115;
+    --surface: #161a21;
+    --surface-2: #1c212a;
+    --line: #262c37;
+    --text: #f4f5f8;
+    --muted: #9aa2b4;
+    --accent: #8a82ff;
+    --accent-2: #4dd4ac;
+    --radius: 18px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 17px/1.65 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 22px; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  header.site {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(15, 17, 21, 0.78);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+  }
+  header.site .wrap { display: flex; align-items: center; gap: 14px; height: 66px; }
+  header.site img { width: 34px; height: 34px; border-radius: 9px; }
+  header.site .name { font-weight: 700; letter-spacing: -0.01em; }
+  header.site nav { margin-left: auto; display: flex; gap: 20px; font-size: 15px; }
+  header.site nav a { color: var(--muted); }
+  header.site nav a:hover { color: var(--text); }
+
+  .hero { padding: 78px 0 54px; }
+  .badge-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+  .pill {
+    font-size: 13px; color: var(--muted);
+    border: 1px solid var(--line); background: var(--surface);
+    padding: 5px 11px; border-radius: 999px;
+  }
+  h1 {
+    font-size: clamp(2.1rem, 5.2vw, 3.5rem);
+    line-height: 1.08; letter-spacing: -0.028em;
+    margin: 0 0 18px; font-weight: 750;
+  }
+  h1 .grad {
+    background: linear-gradient(96deg, var(--accent) 8%, var(--accent-2) 92%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .lede { font-size: clamp(1.02rem, 2.1vw, 1.22rem); color: var(--muted); max-width: 62ch; margin: 0 0 30px; }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 9px;
+    padding: 13px 22px; border-radius: 13px; font-weight: 650; font-size: 16px;
+    border: 1px solid transparent; transition: transform .12s ease, background .2s ease;
+  }
+  .btn:active { transform: scale(.98); }
+  .btn.primary { background: var(--accent); color: #10101a; }
+  .btn.primary:hover { background: #a09aff; text-decoration: none; }
+  .btn.ghost { border-color: var(--line); background: var(--surface); color: var(--text); }
+  .btn.ghost:hover { background: var(--surface-2); text-decoration: none; }
+
+  section { padding: 54px 0; border-top: 1px solid var(--line); }
+  h2 { font-size: clamp(1.45rem, 3vw, 1.95rem); letter-spacing: -0.02em; margin: 0 0 10px; }
+  h3 { font-size: 1.06rem; margin: 0 0 6px; letter-spacing: -0.01em; }
+  p { color: var(--muted); }
+  .section-note { color: var(--muted); max-width: 68ch; margin: 0 0 28px; }
+
+  .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+  .card {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 22px;
+  }
+  .card p { margin: 0; font-size: 15.5px; }
+  .card .ico {
+    display: grid; place-items: center;
+    width: 38px; height: 38px; margin-bottom: 14px;
+    border-radius: 11px; color: var(--accent);
+    background: rgba(138, 130, 255, 0.12);
+    border: 1px solid rgba(138, 130, 255, 0.22);
+  }
+  .card .ico svg { width: 20px; height: 20px; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 15.5px; }
+  th, td { text-align: left; padding: 13px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { color: var(--text); font-weight: 650; font-size: 14px; letter-spacing: .01em; text-transform: uppercase; }
+  td { color: var(--muted); }
+  td strong { color: var(--text); font-weight: 600; }
+  .table-wrap { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--surface); }
+
+  ol.steps { counter-reset: s; list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
+  ol.steps li { counter-increment: s; position: relative; padding-left: 46px; color: var(--muted); }
+  ol.steps li::before {
+    content: counter(s); position: absolute; left: 0; top: -1px;
+    width: 30px; height: 30px; border-radius: 50%;
+    display: grid; place-items: center;
+    background: var(--surface-2); border: 1px solid var(--line);
+    color: var(--text); font-size: 14px; font-weight: 700;
+  }
+  ol.steps strong { color: var(--text); }
+  pre {
+    background: #0b0d11; border: 1px solid var(--line); border-radius: 13px;
+    padding: 16px 18px; overflow-x: auto; font-size: 14px; line-height: 1.6;
+  }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  p code, li code { background: var(--surface-2); padding: 2px 6px; border-radius: 5px; font-size: .92em; }
+
+  details {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 13px; padding: 16px 18px; margin-bottom: 10px;
+  }
+  details[open] { background: var(--surface-2); }
+  summary { cursor: pointer; font-weight: 650; color: var(--text); list-style: none; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; float: right; color: var(--muted); font-weight: 400; }
+  details[open] summary::after { content: "−"; }
+  details p { margin: 12px 0 0; font-size: 15.5px; }
+
+  footer { border-top: 1px solid var(--line); padding: 40px 0 60px; color: var(--muted); font-size: 14.5px; }
+  footer .links { display: flex; flex-wrap: wrap; gap: 18px; margin-bottom: 16px; }
+  .disclaimer { font-size: 13.5px; color: #7c8496; max-width: 78ch; }
+
+  @media (max-width: 640px) {
+    header.site nav { display: none; }
+    .hero { padding-top: 46px; }
+    section { padding: 40px 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .btn { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <img src="icon-192.png" alt="Video Saver icon">
+    <span class="name">Video Saver</span>
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#sites">Supported sites</a>
+      <a href="#install">Install</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://github.com/Cortex-AI-IDE/VS_downloader">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<div class="hero wrap">
+  <div class="badge-row">
+    <span class="pill">Free and open source</span>
+    <span class="pill">GPL-3.0</span>
+    <span class="pill">Android 7.0+</span>
+    <span class="pill">No ads</span>
+    <span class="pill">No tracking</span>
+    <span class="pill">Version 1.2.0</span>
+  </div>
+
+  <h1>Download videos from<br><span class="grad">YouTube, Instagram, Facebook and TikTok</span></h1>
+
+  <p class="lede">
+    Video Saver is a free Android video downloader. Paste a link, tap Download, and the video is
+    saved on your phone as a standard MP4 file. The yt-dlp engine runs on the device, so there is no
+    server, no account and no data collection.
+  </p>
+
+  <div class="cta">
+    <a class="btn primary" href="https://github.com/Cortex-AI-IDE/VS_downloader/releases">Download the APK</a>
+    <a class="btn ghost" href="https://github.com/Cortex-AI-IDE/VS_downloader">View source on GitHub</a>
+    <a class="btn ghost" href="TROUBLESHOOTING.md">Troubleshooting</a>
+  </div>
+</div>
+
+<section id="about">
+  <div class="wrap">
+    <h2>What is Video Saver?</h2>
+    <p class="section-note">
+      Video Saver is an Android application that saves videos from social media and video sites to
+      your own device. It is written in Kotlin, uses Material 3, and runs the open source download
+      engine yt-dlp locally with a bundled Python runtime. Everything happens on the phone: the app
+      never uploads your links, never asks for a password, and has no advertising or analytics
+      library. Files land in the public <code>Download/VideoSaver</code> folder, where the gallery
+      and any file manager can open them.
+    </p>
+  </div>
+</section>
+
+<section id="features">
+  <div class="wrap">
+    <h2>Features</h2>
+    <p class="section-note">Built for one job, done well.</p>
+    <div class="grid">
+      <div class="card">
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"/><path d="M8 12l4 4 4-4"/><path d="M5 19h14"/></svg></span>
+        <h3>One tap downloads</h3>
+        <p>Copy a link in any app, paste it, tap Download. The platform badge confirms the site before anything starts.</p>
+      </div>
+      <div class="card">
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7.5 5v14M16.5 5v14M3 9.5h4.5M3 14.5h4.5M16.5 9.5H21M16.5 14.5H21"/></svg></span>
+        <h3>Always H.264 MP4</h3>
+        <p>Downloads prefer H.264 video inside an MP4 container, so the file plays everywhere and uploads to social apps without a decoding error.</p>
+      </div>
+      <div class="card">
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3L5 13.5h5.5L11 21l8-10.5h-5.5L13 3z"/></svg></span>
+        <h3>Two at a time</h3>
+        <p>A fixed thread pool runs two downloads in parallel and queues the rest, with live percentage and a cancel button.</p>
+      </div>
+      <div class="card">
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15.5V10a6 6 0 10-12 0v5.5L4 18.5h16l-2-3z"/><path d="M10 21h4"/></svg></span>
+        <h3>Survives the background</h3>
+        <p>A foreground service with a progress notification keeps the download alive when you switch apps or lock the screen.</p>
+      </div>
+      <div class="card">
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7.5A1.5 1.5 0 014.5 6h4L10.5 8h9A1.5 1.5 0 0121 9.5v8A1.5 1.5 0 0119.5 19h-15A1.5 1.5 0 013 17.5v-10z"/></svg></span>
+        <h3>Your files, your folder</h3>
+        <p>Saved to <code>Download/VideoSaver</code> through MediaStore on Android 10 and newer, with open, share and delete actions in the app.</p>
+      </div>
+      <div class="card">
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11.5A8 8 0 105.6 17"/><path d="M20 5v6h-6"/></svg></span>
+        <h3>Self updating engine</h3>
+        <p>Sites change often. The header action updates yt-dlp without waiting for a new APK release.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="sites">
+  <div class="wrap">
+    <h2>Supported sites</h2>
+    <p class="section-note">The app detects the platform from the link and shows it as a badge.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Site</th><th>Link types</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>YouTube</strong></td>
+            <td><code>watch?v=</code>, <code>youtu.be</code>, Shorts, <code>/live/</code></td>
+            <td>Some videos need sign in cookies and cannot be fetched.</td>
+          </tr>
+          <tr>
+            <td><strong>Instagram</strong></td>
+            <td><code>/p/</code>, <code>/reel/</code>, <code>/tv/</code>, <code>/share/</code></td>
+            <td>Public posts only.</td>
+          </tr>
+          <tr>
+            <td><strong>Facebook</strong></td>
+            <td><code>/watch</code>, <code>fb.watch</code>, <code>/videos/</code>, <code>/reel/</code></td>
+            <td>Public videos only.</td>
+          </tr>
+          <tr>
+            <td><strong>TikTok</strong></td>
+            <td><code>/@user/video/</code>, <code>vm.tiktok.com</code>, <code>vt.tiktok.com</code>, <code>tiktok.com/t/</code></td>
+            <td>Photo and slideshow posts have no video stream.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="install">
+  <div class="wrap">
+    <h2>Install</h2>
+    <p class="section-note">The app is distributed as a direct APK through GitHub releases.</p>
+    <ol class="steps">
+      <li><strong>Download the latest APK</strong> from the <a href="https://github.com/Cortex-AI-IDE/VS_downloader/releases">releases page</a>.</li>
+      <li><strong>Open the file on your phone</strong> and allow installs from this source when Android asks.</li>
+      <li><strong>Launch the app</strong> and wait a moment while the engine unpacks on the first run.</li>
+      <li><strong>Paste a link and tap Download.</strong> The file appears in <code>Download/VideoSaver</code>.</li>
+    </ol>
+  </div>
+</section>
+
+<section id="build">
+  <div class="wrap">
+    <h2>Build from source</h2>
+    <p class="section-note">
+      JDK 17, Android SDK platform 35 and build tools 35 are required. Full instructions are in
+      <a href="BUILDING.md">docs/BUILDING.md</a>.
+    </p>
+<pre><code>git clone https://github.com/Cortex-AI-IDE/VS_downloader.git
+cd VS_downloader
+echo "sdk.dir=/path/to/android-sdk" &gt; local.properties
+export JAVA_HOME=/path/to/jdk-17
+./gradlew test
+./gradlew assembleDebug</code></pre>
+    <p class="section-note" style="margin-top:18px">
+      The debug APK is written to <code>app/build/outputs/apk/debug/app-debug.apk</code>.
+      The build is about 200 MB because it bundles Python, yt-dlp and FFmpeg for four CPU
+      architectures.
+    </p>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <h2>Frequently asked questions</h2>
+    <p class="section-note">Short answers to the questions people search for most.</p>
+
+    <details open>
+      <summary>What is Video Saver?</summary>
+      <p>Video Saver is a free, open source Android application that downloads videos from YouTube,
+      Instagram, Facebook and TikTok. You paste a link, tap Download, and the video is saved to the
+      <code>Download/VideoSaver</code> folder as a standard MP4 file. It runs the yt-dlp engine
+      inside the app, so no server or account is involved.</p>
+    </details>
+
+    <details>
+      <summary>Which sites does the app support?</summary>
+      <p>YouTube (including Shorts and live links), Instagram posts, reels and share links,
+      Facebook videos, reels and <code>fb.watch</code> links, and TikTok video links including the
+      short <code>vm.tiktok.com</code> and <code>vt.tiktok.com</code> share links. Because the
+      engine is yt-dlp, most other sites that yt-dlp supports also work with a pasted link.</p>
+    </details>
+
+    <details>
+      <summary>Why does TikTok say "couldn't decode, select another video" when I upload a downloaded file?</summary>
+      <p>That message appears when the file is not a standard MP4 with H.264 video and AAC audio.
+      Older versions of the downloader could fall back to WebM, MKV or AV1 files, which the TikTok
+      uploader cannot read. Video Saver 1.2.0 and newer always prefer H.264 inside an MP4 container.
+      Delete the old file, update the app, download again, and upload the new file. The
+      <a href="TROUBLESHOOTING.md">troubleshooting guide</a> explains how to check a file.</p>
+    </details>
+
+    <details>
+      <summary>Is Video Saver free and open source?</summary>
+      <p>Yes. It is released under the GNU General Public License version 3 and the full source code
+      is on GitHub. There are no ads, no subscriptions and no paid features.</p>
+    </details>
+
+    <details>
+      <summary>Does the app collect personal data?</summary>
+      <p>No. There is no analytics, no crash reporting and no advertising library. The app does not
+      ask for an account or a password. The only network traffic is the video download you request
+      and the optional engine update.</p>
+    </details>
+
+    <details>
+      <summary>Which Android versions are supported?</summary>
+      <p>Android 7.0 (API 24) and newer. The app targets Android 15 (API 35) and follows scoped
+      storage rules, writing downloads through MediaStore into the public
+      <code>Download/VideoSaver</code> folder.</p>
+    </details>
+
+    <details>
+      <summary>Can it download private or age restricted videos?</summary>
+      <p>No. Private, age restricted and login walled videos need cookies from a signed in browser
+      session, and the app does not import browser cookies. Public videos download normally.</p>
+    </details>
+
+    <details>
+      <summary>Is it available on Google Play or F-Droid?</summary>
+      <p>Not on Google Play, because its policy does not allow apps that download media from other
+      platforms. The app is distributed as a direct APK from the GitHub releases page. An F-Droid
+      listing is planned.</p>
+    </details>
+  </div>
+</section>
+
+<section id="privacy">
+  <div class="wrap">
+    <h2>Privacy and license</h2>
+    <p class="section-note">
+      Video Saver has no telemetry and asks only for the permissions it needs: network access,
+      notification permission for the progress bar, and storage access for the saved files list.
+      The source is licensed under <a href="https://www.gnu.org/licenses/gpl-3.0.html">GPL-3.0</a>.
+      Third party components are listed in the
+      <a href="https://github.com/Cortex-AI-IDE/VS_downloader/blob/main/NOTICE">NOTICE</a> file.
+    </p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="links">
+      <a href="https://github.com/Cortex-AI-IDE/VS_downloader">Source code</a>
+      <a href="https://github.com/Cortex-AI-IDE/VS_downloader/releases">Releases</a>
+      <a href="BUILDING.md">Build guide</a>
+      <a href="TROUBLESHOOTING.md">Troubleshooting</a>
+      <a href="https://github.com/Cortex-AI-IDE/VS_downloader/blob/main/CONTRIBUTING.md">Contributing</a>
+      <a href="https://github.com/Cortex-AI-IDE/VS_downloader/blob/main/SECURITY.md">Security</a>
+      <a href="llms.txt">llms.txt</a>
+    </div>
+    <p class="disclaimer">
+      Downloading media may conflict with the terms of service of the source website and with
+      copyright law. Use this app only for content you own or have permission to save. YouTube,
+      Instagram, Facebook and TikTok are trademarks of their respective owners. Video Saver is not
+      affiliated with, endorsed by, or sponsored by any of them.
+    </p>
+    <p class="disclaimer">Copyright (C) 2026 Video Saver contributors. Licensed under GPL-3.0.</p>
+  </div>
+</footer>
+
+</body>
+</html>

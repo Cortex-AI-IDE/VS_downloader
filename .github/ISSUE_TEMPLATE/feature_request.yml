@@ -1,0 +1,61 @@
+name: Feature request
+description: Suggest a feature or an improvement for Video Saver
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the idea. Please describe the problem first, then the solution you have in mind.
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Before you start
+      options:
+        - label: I searched the existing issues and this idea is not already there.
+          required: true
+        - label: This is not a question about a site that stopped working. Those go in the bug template.
+          required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      description: Describe the situation where the app is not enough today.
+      placeholder: "I download a lot of clips and I cannot see which ones already finished."
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: What would you like the app to do?
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives you considered
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Download engine
+        - Supported sites
+        - Interface
+        - Storage and files
+        - Notifications
+        - Documentation
+        - Other
+
+  - type: checkboxes
+    id: conduct
+    attributes:
+      label: Code of Conduct
+      options:
+        - label: I agree to follow this project's Code of Conduct.
+          required: true

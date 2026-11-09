@@ -1,84 +1,239 @@
+<div align="center">
+
+<img src="docs/icon.png" width="120" alt="Video Saver app icon: blue and purple play button with download arrow">
+
 # Video Saver
 
-An Android app that downloads video from a pasted link and stores it on the device.
-Paste a YouTube, Instagram, Facebook or TikTok link, press Download, and the file lands in
-the phone's `Download/VideoSaver` folder with an entry in the app's list.
+**A free, open source Android video downloader for YouTube, Instagram, Facebook and TikTok.**
+
+Paste a link, tap Download, and the video is saved to your phone as a standard MP4 file.
+
+[![License: GPL v3](https://img.shields.io/badge/license-GPL--3.0-blue.svg)](LICENSE)
+[![Platform](https://img.shields.io/badge/platform-Android%207.0%2B-3ddc84.svg)](#requirements)
+[![Kotlin](https://img.shields.io/badge/kotlin-2.0.21-7f52ff.svg)](https://kotlinlang.org)
+[![Version](https://img.shields.io/badge/version-1.2.0-orange.svg)](CHANGELOG.md)
+[![No ads](https://img.shields.io/badge/ads-none-success.svg)](#privacy)
+[![No tracking](https://img.shields.io/badge/tracking-none-success.svg)](#privacy)
+
+[Download the APK](../../releases) | [Documentation](docs/) | [Troubleshooting](docs/TROUBLESHOOTING.md) | [Build from source](docs/BUILDING.md)
+
+</div>
+
+---
+
+## What is Video Saver?
+
+Video Saver is an Android app that downloads videos from social media and video sites and saves
+them on your own device. It runs the open source download engine yt-dlp inside the app, so no
+server is involved, no account is needed, and no data leaves your phone.
+
+The app is written in Kotlin with Material 3, works offline after the first engine setup, and
+stores every file in the public `Download/VideoSaver` folder where your gallery and file manager
+can find it.
+
+## Supported sites
+
+| Site | Link types supported | Notes |
+|---|---|---|
+| **YouTube** | `youtube.com/watch?v=`, `youtu.be/`, `m.youtube.com`, Shorts, `youtube.com/live/` | Some videos need sign in cookies from the site |
+| **Instagram** | `instagram.com/p/`, `/reel/`, `/tv/`, `/share/` | Private accounts are not accessible |
+| **Facebook** | `facebook.com/watch`, `fb.watch`, `/videos/`, `/reel/`, `/share/v/` | Public videos only |
+| **TikTok** | `tiktok.com/@user/video/`, `m.tiktok.com`, `vm.tiktok.com`, `vt.tiktok.com`, `tiktok.com/t/`, `tiktokv.com` | Photo and slideshow posts have no video stream |
+
+The app detects the platform from the link and shows it as a badge before the download starts.
+Because the engine is yt-dlp, most other sites that yt-dlp supports also work with a pasted link.
+
+## Features
+
+- **One tap download.** Paste a link from any app, tap Download, done.
+- **H.264 MP4 output.** Every download prefers H.264 video in an MP4 container, so the file plays
+  everywhere and can be re uploaded to TikTok, Instagram or WhatsApp without a decoding error.
+- **Two downloads at once.** A fixed thread pool runs two jobs in parallel and queues the rest.
+- **Progress that survives.** A foreground service keeps the download alive with a progress
+  notification when you switch apps or lock the screen.
+- **Saved files list.** Open, share or delete each download from inside the app.
+- **Self updating engine.** Sites change often, so the app can update yt-dlp from the header action
+  instead of waiting for a new APK release.
+- **Small and honest.** No ads, no analytics, no network calls except the download itself.
+- **Unit tested.** 38 tests cover link parsing, format choice, file naming and error messages.
+
+## Screenshots
+
+<div align="center">
+
+| Main screen | Download in progress | Saved files |
+|---|---|---|
+| Paste a link, see the platform badge | Live percentage and cancel | Open, share, delete |
+
+</div>
+
+Screenshots are added with each release. See the [latest release](../../releases/latest).
+
+## Install
+
+### Option 1: Install the APK
+
+1. Open the [Releases](../../releases) page.
+2. Download the latest `VideoSaver-<version>.apk`.
+3. Open the file on your phone and allow installs from this source when Android asks.
+4. Launch Video Saver and wait for the engine to unpack on the first run.
+
+The app is distributed as a direct APK and is not on Google Play. Google Play policy does not
+allow apps that download media from other platforms.
+
+### Option 2: Build from source
+
+Full instructions are in [docs/BUILDING.md](docs/BUILDING.md). The short version:
+
+```bash
+git clone https://github.com/Cortex-AI-IDE/VS_downloader.git
+cd VS_downloader
+echo "sdk.dir=/path/to/android-sdk" > local.properties
+./gradlew assembleDebug
+adb install -r app/build/outputs/apk/debug/app-debug.apk
+```
+
+## Requirements
+
+- Android 7.0 (API 24) or newer
+- About 200 MB of free storage for the app plus engine files
+- A network connection for the download itself
 
 ## How it works
 
 | Layer | Choice |
 |---|---|
-| App language | Kotlin, single Activity with View Binding, Material 3 dark theme |
-| Download engine | yt-dlp 2026.10.26 with Python 3.11+ bundled in the APK |
-| Engine wrapper | `io.github.junkfood02.youtubedl-android` 0.18.1 (library and ffmpeg) |
+| Language | Kotlin, single Activity, View Binding, Material 3 dark theme |
+| Download engine | yt-dlp 2026.10.26 with a bundled Python runtime |
+| Engine wrapper | `io.github.junkfood02.youtubedl-android` 0.18.1 with the ffmpeg module |
 | Concurrency | Two downloads at a time on a fixed thread pool |
 | Storage | MediaStore into `Download/VideoSaver` on Android 10+, direct file copy before that |
 | Background work | Foreground service with a progress notification |
 
-Electron could not be used here because it only targets desktop platforms. The full
-research behind this stack is in [docs/research.md](docs/research.md).
-
-## Project layout
-
 ```
 app/src/main/java/com/hakeem/videosaver/
-  VideoSaverApp.kt      Application, warms up the engine on startup
-  EngineManager.kt      Initializes and updates yt-dlp plus ffmpeg
-  DownloadCenter.kt     Runs downloads, parses progress, saves results
-  DownloadsRepository.kt MediaStore listing, open, share, delete
-  DownloadService.kt    Foreground service with progress notification
-  MainActivity.kt       Paste field, progress card, saved file list
-  DownloadAdapter.kt    List of saved files
-  UrlHelper.kt          Link validation and platform detection (unit tested)
+  VideoSaverApp.kt        Application, warms up the engine on startup
+  EngineManager.kt        Initializes and updates yt-dlp plus ffmpeg
+  DownloadCenter.kt       Runs downloads, parses progress, saves results
+  DownloadsRepository.kt  MediaStore listing, open, share, delete
+  DownloadService.kt      Foreground service with progress notification
+  MainActivity.kt         Paste field, progress card, saved file list
+  DownloadAdapter.kt      List of saved files
+  UrlHelper.kt            Link validation and platform detection
+  FormatPolicy.kt         Format choice, keeps output as H.264 MP4
+  FileNamePolicy.kt       Keeps file names inside the filesystem limit
+  ErrorText.kt            Turns engine output into a readable error
+  YtDlpVersion.kt         Reads and compares engine versions
 ```
 
-## Build requirements
+Electron was considered and rejected because it only targets desktop platforms. The full stack
+research is in [docs/research.md](docs/research.md).
 
-* JDK 17
-* Android SDK with platform 35 and build-tools 35
-* About 6 GB of free disk for the SDK and Gradle caches
+## Frequently asked questions
 
-Set the tool paths, then build:
+### Is Video Saver free?
 
-```bash
-export JAVA_HOME=/path/to/jdk-17
-export ANDROID_HOME=/path/to/android-sdk
-./gradlew assembleDebug
-```
+Yes. It is free and open source under the GNU GPL v3. There are no ads, no subscriptions and no
+paid features.
 
-The APK is written to `app/build/outputs/apk/debug/app-debug.apk`.
+### Does it work without an account?
 
-Install it on a connected device or a running emulator:
+Yes. No sign in is required. The app never asks for your social media password.
 
-```bash
-adb install -r app/build/outputs/apk/debug/app-debug.apk
-```
+### Where are the videos saved?
 
-Run the unit tests:
+In the public `Download/VideoSaver` folder on internal storage. Gallery apps and file managers can
+open that folder directly.
 
-```bash
-./gradlew test
-```
+### Why does TikTok say "couldn't decode, select another video" when I upload?
 
-## Behaviour worth knowing
+That message appears when the file is not a standard H.264 MP4. Older versions of this app fell
+back to WebM, MKV or AV1 files, which the TikTok uploader cannot read. Version 1.2.0 and newer
+always prefer H.264 video inside an MP4 container. Delete the old file, update the app, and
+download again. See [Troubleshooting](docs/TROUBLESHOOTING.md).
 
-* The engine unpacks Python and yt-dlp on first launch, which takes a moment. The
-  status line in the header shows the state.
-* The engine can be updated in the app with the "Update engine" action, because
-  yt-dlp needs new releases when the sites change.
-* On Android 10 and newer, scoped storage allows apps to write only into
-  `Download/` and `Documents/` through MediaStore, so downloads go through it.
-* Some Instagram profile pages are reported as broken by yt-dlp upstream, and a
-  small share of YouTube videos need sign-in cookies before they can be fetched.
-* TikTok works with full links (`/@user/video/<id>`), mobile links (`m.tiktok.com`)
-  and the short share links (`vm.tiktok.com`, `vt.tiktok.com`, `tiktok.com/t/...`).
-  TikTok photo or slideshow posts have no video stream, so they cannot be downloaded.
-* Every download prefers H.264 video in an MP4 container, so the saved file can be
-  uploaded to social apps such as TikTok without a "could not decode" error.
-* Distribution: apps of this kind are usually shipped as a signed APK or through
-  F-Droid rather than Google Play.
+### Why do I see a message that the engine is out of date?
 
-## Rights
+yt-dlp is updated frequently because the websites change. When the bundled engine is more than
+about three months old, yt-dlp prints a warning. Use the **Update engine** action in the header,
+or install the latest APK which ships a current engine.
 
-Downloading media can conflict with the terms of the site and with copyright.
-Use the app for content you are allowed to save.
+### Can I download private or age restricted videos?
+
+Not without cookies from a signed in browser session, and this app does not import browser
+cookies. Public videos work normally.
+
+### Does it download audio only?
+
+Not yet. Audio extraction is on the roadmap. The ffmpeg module is already bundled, so this is a
+small addition.
+
+### Is it on F-Droid or Google Play?
+
+Not yet. F-Droid is being prepared. Google Play does not accept apps of this type.
+
+### Which Android versions are supported?
+
+Android 7.0 and newer. The app targets Android 15 (API 35) and complies with scoped storage.
+
+### Does the app collect any data?
+
+No. There is no analytics, no crash reporting and no advertising library. The only network
+traffic is the video download you request.
+
+## Privacy
+
+Video Saver has no telemetry. It does not read your contacts, location, camera or microphone. It
+requests network access, notification permission for the progress bar, and storage access for the
+saved files list. Your links and files stay on your device.
+
+## Troubleshooting
+
+Common problems and fixes are documented in [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md),
+including:
+
+- "couldn't decode, select another video" on upload
+- engine out of date warnings
+- "File name too long" errors
+- Instagram links that fail with a broken profile error
+- downloads that stop when the screen turns off
+
+## Roadmap
+
+- [ ] Audio only downloads (MP3, M4A)
+- [ ] Download history with retry
+- [ ] Playlist and channel support
+- [ ] Optional cookie import for restricted videos
+- [ ] F-Droid listing
+- [ ] Localisation, starting with Malayalam
+
+## Contributing
+
+Contributions are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md) first, then open an issue or a
+pull request. Please follow the [Code of Conduct](CODE_OF_CONDUCT.md).
+
+Good first issues are labelled in the issue tracker.
+
+## Security
+
+To report a vulnerability, follow [SECURITY.md](SECURITY.md). Please do not open a public issue for
+security problems.
+
+## License
+
+Video Saver is released under the [GNU General Public License v3.0](LICENSE).
+
+This license is required because the app links the `youtubedl-android` library, which is also
+GPL-3.0. Third party components and their licenses are listed in [NOTICE](NOTICE).
+
+## Disclaimer
+
+Downloading media may conflict with the terms of service of the source website and with
+copyright law. Use Video Saver only for content you own or have permission to save, and follow
+the rules that apply in your country.
+
+<div align="center">
+
+Made with Kotlin, yt-dlp and no advertisements.
+
+</div>

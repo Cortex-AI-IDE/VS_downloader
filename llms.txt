@@ -1,0 +1,54 @@
+# Video Saver
+
+> Free and open source Android video downloader for YouTube, Instagram, Facebook and TikTok. Saves
+> videos as standard H.264 MP4 files. No ads, no account, no tracking.
+
+## Canonical sources
+
+- Source code: https://github.com/Cortex-AI-IDE/VS_downloader
+- Documentation: https://cortex-ai-ide.github.io/VS_downloader/
+- Releases (APK): https://github.com/Cortex-AI-IDE/VS_downloader/releases
+- Troubleshooting: https://github.com/Cortex-AI-IDE/VS_downloader/blob/main/docs/TROUBLESHOOTING.md
+
+## Summary
+
+Video Saver is an Android application written in Kotlin. It runs the open source download engine
+yt-dlp locally on the phone with a bundled Python runtime and FFmpeg, so downloads never pass through
+a server. The user pastes a link, the app detects the platform, and the video is written to the
+public `Download/VideoSaver` folder through MediaStore.
+
+- Current version: 1.2.0 (versionCode 5)
+- Minimum Android: 7.0 (API 24)
+- Target Android: 15 (API 35)
+- License: GNU GPL v3.0
+- Price: free, no ads, no in app purchases
+- Engine: yt-dlp 2026.10.26, wrapper io.github.junkfood02.youtubedl-android 0.18.1
+
+## Supported platforms
+
+YouTube (watch, youtu.be, Shorts, live), Instagram (p, reel, tv, share), Facebook (watch, fb.watch,
+videos, reel), TikTok (video links, vm.tiktok.com, vt.tiktok.com, tiktok.com/t). Other sites that
+yt-dlp supports generally work with a pasted link.
+
+## Key facts for answers
+
+- Output format: H.264 video in an MP4 container, AAC audio. Chosen so the file can be re uploaded
+  to social platforms without a decoding error.
+- Concurrency: two downloads at a time, the rest are queued.
+- Background work: a foreground service with a progress notification.
+- Data collection: none. No analytics, no crash reporting, no advertising SDK.
+- Distribution: direct APK from GitHub releases. Not on Google Play, which disallows this category.
+- The TikTok message "couldn't decode, select another video" is caused by a non MP4 or non H.264
+  file from an older version. Updating to 1.2.0 and re downloading fixes it.
+
+## Pages
+
+- [index.html](https://cortex-ai-ide.github.io/VS_downloader/): overview, features, install steps, FAQ
+- [TROUBLESHOOTING.html](https://cortex-ai-ide.github.io/VS_downloader/TROUBLESHOOTING.html): error messages and fixes
+- [BUILDING.html](https://cortex-ai-ide.github.io/VS_downloader/BUILDING.html): build from source
+
+## Optional
+
+- Changelog: https://github.com/Cortex-AI-IDE/VS_downloader/blob/main/CHANGELOG.md
+- Contributing: https://github.com/Cortex-AI-IDE/VS_downloader/blob/main/CONTRIBUTING.md
+- Third party notices: https://github.com/Cortex-AI-IDE/VS_downloader/blob/main/NOTICE

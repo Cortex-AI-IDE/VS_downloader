@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Troubleshooting guide
+    url: https://github.com/Cortex-AI-IDE/VS_downloader/blob/main/docs/TROUBLESHOOTING.md
+    about: Fixes for common errors, including the TikTok "couldn't decode" message and engine warnings.
+  - name: Build instructions
+    url: https://github.com/Cortex-AI-IDE/VS_downloader/blob/main/docs/BUILDING.md
+    about: How to compile the app from source on Linux, macOS or Windows.
+  - name: Security report
+    url: https://github.com/Cortex-AI-IDE/VS_downloader/security/policy
+    about: Report a vulnerability privately instead of opening a public issue.

@@ -1,0 +1,38 @@
+# Notices and third party licenses
+
+Video Saver is licensed under the GNU General Public License v3.0. See [LICENSE](LICENSE).
+
+The app uses the following third party components. Their licenses apply to those parts.
+
+## Runtime components bundled in the APK
+
+| Component | Version | License | Project |
+|---|---|---|---|
+| yt-dlp | 2026.10.26 | The Unlicense | https://github.com/yt-dlp/yt-dlp |
+| youtubedl-android (`library` and `ffmpeg` modules) | 0.18.1 | GNU GPL v3.0 | https://github.com/JunkFood02/youtubedl-android |
+| Python for Android (bundled by youtubedl-android) | 3.12 | Python Software Foundation License | https://www.python.org |
+| FFmpeg (bundled by the youtubedl-android ffmpeg module) | see library release notes | GNU LGPL v3.0 or GPL v3.0 depending on build flags | https://ffmpeg.org |
+
+Because the APK links a GPL-3.0 library and its FFmpeg build, the combined work is distributed
+under GPL-3.0. The corresponding source for this app is this repository. The source of the
+libraries is available at the project links above.
+
+## Android libraries
+
+| Component | License | Project |
+|---|---|---|
+| AndroidX Core, AppCompat, ConstraintLayout, RecyclerView, Lifecycle | Apache License 2.0 | https://developer.android.com/jetpack |
+| Material Components for Android | Apache License 2.0 | https://github.com/material-components/material-components-android |
+| Kotlin standard library | Apache License 2.0 | https://kotlinlang.org |
+| JUnit 4 | Eclipse Public License 1.0 | https://junit.org/junit4 |
+
+## Assets
+
+The application icon was designed for this project by the author and is distributed under the same
+GPL-3.0 license as the rest of the app.
+
+## Trademarks
+
+YouTube, Instagram, Facebook and TikTok are trademarks of their respective owners. Video Saver is
+not affiliated with, endorsed by, or sponsored by any of these companies. Names are used only to
+describe which links the app can open.

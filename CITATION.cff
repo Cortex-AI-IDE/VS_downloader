@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use this software in a project or publication, please cite it as below."
+title: "Video Saver: an open source Android video downloader for YouTube, Instagram, Facebook and TikTok"
+abstract: >-
+  Video Saver is a free and open source Android application that downloads videos from social
+  media and video platforms and saves them to the device as standard H.264 MP4 files. It runs
+  yt-dlp locally on the phone, requires no account, and contains no advertising or analytics.
+type: software
+authors:
+  - name: "Video Saver contributors"
+    alias: Cortex-AI-IDE
+    website: "https://github.com/Cortex-AI-IDE"
+repository-code: "https://github.com/Cortex-AI-IDE/VS_downloader"
+url: "https://github.com/Cortex-AI-IDE/VS_downloader"
+license: GPL-3.0-or-later
+version: 1.2.0
+date-released: "2026-11-09"
+keywords:
+  - android
+  - video downloader
+  - yt-dlp
+  - kotlin
+  - youtube downloader
+  - instagram downloader
+  - facebook downloader
+  - tiktok downloader
+  - open source
+  - mp4

@@ -1,0 +1,108 @@
+name: Bug report
+description: Report something that does not work in Video Saver
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report. Please fill in the fields below so the problem can be reproduced.
+        Do not paste private links or personal data. Replace the identifier in a URL with `XXXX`.
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Before you start
+      options:
+        - label: I searched the existing issues and this problem is not already reported.
+          required: true
+        - label: I am using the latest release from the Releases page.
+          required: true
+
+  - type: input
+    id: app-version
+    attributes:
+      label: App version
+      description: Shown in the header under the engine status, for example 1.2.0
+      placeholder: "1.2.0"
+    validations:
+      required: true
+
+  - type: input
+    id: android-version
+    attributes:
+      label: Android version and phone model
+      placeholder: "Android 14, Pixel 7"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: site
+    attributes:
+      label: Which site was the link from?
+      options:
+        - YouTube
+        - Instagram
+        - Facebook
+        - TikTok
+        - Another site
+        - Not related to a site
+    validations:
+      required: true
+
+  - type: input
+    id: link-type
+    attributes:
+      label: Link type
+      description: Do not paste the real link. Describe the shape only.
+      placeholder: "https://www.tiktok.com/@user/video/XXXX"
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Copy a link
+        2. Paste it in the app
+        3. Tap Download
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect to happen?
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: What actually happened?
+      description: Include the exact error text shown in the app.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: engine
+    attributes:
+      label: Does the problem still happen after updating the engine?
+      options:
+        - "Yes, I used Update engine in the header"
+        - "No, updating the engine fixed it"
+        - "I have not tried"
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs (optional)
+      description: Paste logcat output only if you know how to collect it. Remove personal data first.
+      render: shell
+
+  - type: checkboxes
+    id: conduct
+    attributes:
+      label: Code of Conduct
+      options:
+        - label: I agree to follow this project's Code of Conduct.
+          required: true
