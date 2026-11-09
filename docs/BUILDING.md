@@ -54,22 +54,29 @@ The output must report version 17.
 ./gradlew assembleDebug
 ```
 
-The APK is written to:
+The build writes one APK per CPU architecture:
 
 ```
-app/build/outputs/apk/debug/app-debug.apk
+app/build/outputs/apk/debug/app-arm64-v8a-debug.apk      59 MB
+app/build/outputs/apk/debug/app-armeabi-v7a-debug.apk    52 MB
+app/build/outputs/apk/debug/app-x86_64-debug.apk         62 MB
+app/build/outputs/apk/debug/app-universal-debug.apk     151 MB
 ```
 
-The file is about 200 MB because it contains a Python runtime, yt-dlp and FFmpeg for four CPU
-architectures. A release build with ABI splits is much smaller, see below.
+The split APKs are small because the bundled Python runtime and FFmpeg are around 48 MB per
+architecture. The universal APK carries all of them and is only needed when the target device is
+unknown.
 
 ## 5. Install
 
 With a phone connected over USB and USB debugging enabled:
 
 ```bash
-adb install -r app/build/outputs/apk/debug/app-debug.apk
+adb install -r app/build/outputs/apk/debug/app-arm64-v8a-debug.apk
 ```
+
+Use the APK that matches the device. `adb shell getprop ro.product.cpu.abi` prints the
+architecture of a connected phone.
 
 Or copy the APK to the phone and open it. Android will ask you to allow installs from that source.
 
@@ -84,23 +91,27 @@ The HTML report is written to `app/build/reports/tests/testDebugUnitTest/index.h
 The suite covers link parsing, format choice, file naming, error text and engine version handling.
 All tests are plain JVM tests and run in a few seconds.
 
-## Smaller release builds
+## APK sizes
 
-The default build packs native libraries for `arm64-v8a`, `armeabi-v7a`, `x86` and `x86_64`. Most
-phones only need `arm64-v8a`. To cut the size, add ABI splits in `app/build.gradle.kts`:
+`app/build.gradle.kts` already splits the build by ABI, so every `assembleDebug` or
+`assembleRelease` produces one APK per architecture plus a universal fallback. Drop `x86` from the
+list because 32-bit Intel devices are effectively gone; `x86_64` still covers emulators.
+
+Changing the split list is a one line edit:
 
 ```kotlin
-android {
-    splits {
-        abi {
-            isEnable = true
-            reset()
-            include("arm64-v8a", "armeabi-v7a")
-            isUniversalApk = false
-        }
+splits {
+    abi {
+        isEnable = true
+        reset()
+        include("arm64-v8a", "armeabi-v7a", "x86_64")
+        isUniversalApk = true
     }
 }
 ```
+
+`isUniversalApk = true` keeps a single APK that runs anywhere. Set it to `false` if you only ever
+want the small per-architecture files.
 
 A signed release build also needs a keystore:
 

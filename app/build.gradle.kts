@@ -11,11 +11,26 @@ android {
         applicationId = "com.hakeem.videosaver"
         minSdk = 24
         targetSdk = 35
-        versionCode = 5
-        versionName = "1.2.0"
+        versionCode = 6
+        versionName = "1.2.1"
 
         ndk {
-            abiFilters += listOf("arm64-v8a", "armeabi-v7a", "x86", "x86_64")
+            abiFilters += listOf("arm64-v8a", "armeabi-v7a", "x86_64")
+        }
+    }
+
+    // The Python runtime and ffmpeg are ~48 MB per CPU architecture, so a
+    // single APK carrying all of them is nearly 200 MB. Splitting by ABI
+    // ships one architecture per APK, which is roughly a third of the size.
+    // arm64-v8a covers every phone made in the last several years,
+    // armeabi-v7a covers older 32-bit devices, and x86_64 covers emulators.
+    // The universal APK stays available as a fallback for anything unusual.
+    splits {
+        abi {
+            isEnable = true
+            reset()
+            include("arm64-v8a", "armeabi-v7a", "x86_64")
+            isUniversalApk = true
         }
     }
 

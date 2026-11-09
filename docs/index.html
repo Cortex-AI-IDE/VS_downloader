@@ -42,9 +42,10 @@
       "applicationCategory": "MultimediaApplication",
       "applicationSubCategory": "Video downloader",
       "operatingSystem": "Android 7.0 and newer",
-      "softwareVersion": "1.2.0",
+      "softwareVersion": "1.2.1",
       "fileFormat": "application/vnd.android.package-archive",
-      "downloadUrl": "https://github.com/Cortex-AI-IDE/VS_downloader/releases/latest/download/app-debug.apk",
+      "fileSize": "59MB",
+      "downloadUrl": "https://github.com/Cortex-AI-IDE/VS_downloader/releases/latest/download/app-arm64-v8a.apk",
       "codeRepository": "https://github.com/Cortex-AI-IDE/VS_downloader",
       "license": "https://www.gnu.org/licenses/gpl-3.0.html",
       "isAccessibleForFree": true,
@@ -287,6 +288,10 @@
   }
   .download-head { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
   .download-box .btn { width: 100%; justify-content: center; }
+  .download-table { margin: 20px 0 4px; font-size: 14.5px; }
+  .download-table th { font-size: 12.5px; text-transform: uppercase; letter-spacing: .06em; }
+  .download-table td, .download-table th { padding: 9px 12px; }
+  .download-table td:first-child { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13.5px; }
   .download-url-label {
     font-size: 12.5px; text-transform: uppercase; letter-spacing: .06em;
     margin: 20px 0 8px; color: var(--muted);
@@ -335,7 +340,7 @@
     <span class="pill">Android 7.0+</span>
     <span class="pill">No ads</span>
     <span class="pill">No tracking</span>
-    <span class="pill">Version 1.2.0</span>
+    <span class="pill">Version 1.2.1</span>
   </div>
 
   <h1>Download videos from<br><span class="grad">YouTube, Instagram, Facebook and TikTok</span></h1>
@@ -347,7 +352,7 @@
   </p>
 
   <div class="cta">
-    <a class="btn primary" href="https://github.com/Cortex-AI-IDE/VS_downloader/releases/latest/download/app-debug.apk">Download the APK</a>
+    <a class="btn primary" href="https://github.com/Cortex-AI-IDE/VS_downloader/releases/latest/download/app-arm64-v8a.apk">Download the APK</a>
     <a class="btn ghost" href="https://github.com/Cortex-AI-IDE/VS_downloader">View source on GitHub</a>
     <a class="btn ghost" href="TROUBLESHOOTING.md">Troubleshooting</a>
   </div>
@@ -452,15 +457,32 @@
 
     <div class="download-box">
       <div class="download-head">
-        <span class="pill">Version 1.2.0</span>
+        <span class="pill">Version 1.2.1</span>
         <span class="pill">Android 7.0+</span>
-        <span class="pill">198 MB</span>
+        <span class="pill">59 MB for most phones</span>
       </div>
-      <a class="btn primary" href="https://github.com/Cortex-AI-IDE/VS_downloader/releases/latest/download/app-debug.apk">Download app-debug.apk</a>
-      <p class="download-url-label">Direct download link</p>
-<pre><code>https://github.com/Cortex-AI-IDE/VS_downloader/releases/latest/download/app-debug.apk</code></pre>
+      <a class="btn primary" href="https://github.com/Cortex-AI-IDE/VS_downloader/releases/latest/download/app-arm64-v8a.apk">Download for Android (arm64)</a>
       <p class="download-hint">
-        Open this link on your phone, or copy it to share. The link always serves the newest release.
+        The app bundles a Python runtime and FFmpeg, so it is built once per CPU architecture.
+        The button above serves the arm64-v8a build, which covers almost every phone released
+        since 2017.
+      </p>
+      <table class="download-table">
+        <thead>
+          <tr><th>Architecture</th><th>Size</th><th>Use it for</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><a href="https://github.com/Cortex-AI-IDE/VS_downloader/releases/latest/download/app-arm64-v8a.apk">arm64-v8a</a></td><td>59 MB</td><td>Almost all phones from 2017 onwards</td></tr>
+          <tr><td><a href="https://github.com/Cortex-AI-IDE/VS_downloader/releases/latest/download/app-armeabi-v7a.apk">armeabi-v7a</a></td><td>52 MB</td><td>Older 32-bit phones</td></tr>
+          <tr><td><a href="https://github.com/Cortex-AI-IDE/VS_downloader/releases/latest/download/app-x86_64.apk">x86_64</a></td><td>62 MB</td><td>Android emulators</td></tr>
+          <tr><td><a href="https://github.com/Cortex-AI-IDE/VS_downloader/releases/latest/download/app-universal.apk">universal</a></td><td>151 MB</td><td>Fallback if you are unsure</td></tr>
+        </tbody>
+      </table>
+      <p class="download-url-label">Direct download link</p>
+<pre><code>https://github.com/Cortex-AI-IDE/VS_downloader/releases/latest/download/app-arm64-v8a.apk</code></pre>
+      <p class="download-hint">
+        Open this link on your phone, or copy it to share. It always serves the newest release.
+        Each release also includes a <code>SHA256SUMS.txt</code> file to verify the download.
       </p>
     </div>
 
@@ -487,9 +509,10 @@ export JAVA_HOME=/path/to/jdk-17
 ./gradlew test
 ./gradlew assembleDebug</code></pre>
     <p class="section-note" style="margin-top:18px">
-      The debug APK is written to <code>app/build/outputs/apk/debug/app-debug.apk</code>.
-      The build is about 200 MB because it bundles Python, yt-dlp and FFmpeg for four CPU
-      architectures.
+      The build produces one APK per CPU architecture under
+      <code>app/build/outputs/apk/debug/</code>. Each is about 52 to 62 MB, because Python,
+      yt-dlp and FFmpeg are bundled for that architecture only. The universal build,
+      <code>app-universal-debug.apk</code>, carries all of them together and is about 151 MB.
     </p>
   </div>
 </section>

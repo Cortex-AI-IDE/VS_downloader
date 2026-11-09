@@ -5,6 +5,19 @@ All notable changes to this project are documented in this file.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.1] - 2026-11-09
+
+### Changed
+
+- The build now produces one APK per CPU architecture instead of a single universal APK. The
+  recommended arm64 build is 59 MB instead of 198 MB, because the bundled Python runtime and
+  FFmpeg are no longer duplicated four times. `arm64-v8a`, `armeabi-v7a` and `x86_64` are built,
+  plus a universal fallback for unknown devices.
+- Dropped the 32-bit `x86` target. It only ever served obsolete Intel devices; `x86_64` still
+  covers emulators.
+- Continuous integration now prints the APK sizes, writes a `SHA256SUMS.txt`, and publishes all
+  builds as a single `apks` artifact.
+
 ## [1.2.0] - 2026-11-09
 
 ### Added

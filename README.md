@@ -11,7 +11,7 @@ Paste a link, tap Download, and the video is saved to your phone as a standard M
 [![License: GPL v3](https://img.shields.io/badge/license-GPL--3.0-blue.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/platform-Android%207.0%2B-3ddc84.svg)](#requirements)
 [![Kotlin](https://img.shields.io/badge/kotlin-2.0.21-7f52ff.svg)](https://kotlinlang.org)
-[![Version](https://img.shields.io/badge/version-1.2.0-orange.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-1.2.1-orange.svg)](CHANGELOG.md)
 [![No ads](https://img.shields.io/badge/ads-none-success.svg)](#privacy)
 [![No tracking](https://img.shields.io/badge/tracking-none-success.svg)](#privacy)
 
@@ -73,15 +73,25 @@ Screenshots are added with each release. See the [latest release](../../releases
 
 ### Option 1: Install the APK
 
-1. Open the [latest release](../../releases/latest), or download the APK directly:
-   [app-debug.apk](https://github.com/Cortex-AI-IDE/VS_downloader/releases/latest/download/app-debug.apk)
-   (about 198 MB, because the APK bundles the engine for every CPU architecture).
-2. Open the file on your phone. Android will ask to allow installs from your browser or file
-   manager. Allow it once for that app.
-3. Google Play Protect may warn that the app is unknown because it is signed with a debug key,
+The app bundles a Python runtime and ffmpeg, which are large, so the build is split per CPU
+architecture. Download the one that matches your phone:
+
+| File | Size | Use it for |
+| --- | --- | --- |
+| [app-arm64-v8a.apk](https://github.com/Cortex-AI-IDE/VS_downloader/releases/latest/download/app-arm64-v8a.apk) | 59 MB | Almost every phone released since 2017. Start here. |
+| [app-armeabi-v7a.apk](https://github.com/Cortex-AI-IDE/VS_downloader/releases/latest/download/app-armeabi-v7a.apk) | 52 MB | Older 32-bit phones |
+| [app-x86_64.apk](https://github.com/Cortex-AI-IDE/VS_downloader/releases/latest/download/app-x86_64.apk) | 62 MB | Android emulators |
+| [app-universal.apk](https://github.com/Cortex-AI-IDE/VS_downloader/releases/latest/download/app-universal.apk) | 151 MB | Fallback if you are unsure which one you need |
+
+If you do not know your architecture, pick `arm64-v8a`. Every release also ships a
+`SHA256SUMS.txt` so you can verify the download.
+
+1. Download the file on your phone. Android will ask to allow installs from your browser or
+   file manager. Allow it once for that app.
+2. Google Play Protect may warn that the app is unknown because it is signed with a debug key,
    not a Play Store key. Tap **More details**, then **Install anyway**. This is expected for any
    sideloaded build.
-4. Launch Video Saver and wait for the engine to unpack on the first run.
+3. Launch Video Saver and wait for the engine to unpack on the first run.
 
 The app is distributed as a direct APK and is not on Google Play. Google Play policy does not
 allow apps that download media from other platforms.
@@ -95,13 +105,13 @@ git clone https://github.com/Cortex-AI-IDE/VS_downloader.git
 cd VS_downloader
 echo "sdk.dir=/path/to/android-sdk" > local.properties
 ./gradlew assembleDebug
-adb install -r app/build/outputs/apk/debug/app-debug.apk
+adb install -r app/build/outputs/apk/debug/app-arm64-v8a-debug.apk
 ```
 
 ## Requirements
 
 - Android 7.0 (API 24) or newer
-- About 200 MB of free storage for the app plus engine files
+- About 150 MB of free storage for the APK plus the unpacked engine
 - A network connection for the download itself
 
 ## How it works

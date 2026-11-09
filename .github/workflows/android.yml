@@ -38,6 +38,9 @@ jobs:
       - name: Build debug APK
         run: ./gradlew assembleDebug --stacktrace
 
+      - name: Show APK sizes
+        run: ls -lh app/build/outputs/apk/debug/*.apk
+
       - name: Publish test report
         if: always()
         uses: actions/upload-artifact@v7
@@ -46,9 +49,14 @@ jobs:
           path: app/build/reports/tests/
           if-no-files-found: ignore
 
-      - name: Upload debug APK
+      - name: Generate checksums
+        run: cd app/build/outputs/apk/debug && sha256sum *.apk > SHA256SUMS.txt && cat SHA256SUMS.txt
+
+      - name: Upload APKs
         uses: actions/upload-artifact@v7
         with:
-          name: app-debug
-          path: app/build/outputs/apk/debug/*.apk
+          name: apks
+          path: |
+            app/build/outputs/apk/debug/*.apk
+            app/build/outputs/apk/debug/SHA256SUMS.txt
           if-no-files-found: error
