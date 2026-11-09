@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <!-- Pre Android 10 downloads live in the public Download folder -->
+    <external-path
+        name="public_downloads"
+        path="Download/" />
+    <external-files-path
+        name="app_stage"
+        path="." />
+</paths>

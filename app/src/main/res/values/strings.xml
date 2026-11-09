@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Video Saver</string>
+
+    <string name="hint_paste_link">Paste a video link</string>
+    <string name="supported_sites">YouTube · Instagram · Facebook · TikTok</string>
+    <string name="download">Download</string>
+    <string name="paste">Paste</string>
+    <string name="cancel">Cancel</string>
+    <string name="update_engine">Update engine</string>
+    <string name="section_saved">Saved on this device</string>
+
+    <string name="no_url">Paste a video link first</string>
+    <string name="bad_url">That does not look like a valid http link</string>
+    <string name="clipboard_empty">No link found in the clipboard</string>
+
+    <string name="engine_preparing">Preparing download engine…</string>
+    <string name="engine_ready">Engine ready · yt-dlp %1$s</string>
+    <string name="engine_failed">Engine problem: %1$s</string>
+    <string name="engine_updating">Checking for a newer engine…</string>
+    <string name="unknown_error">unknown error</string>
+
+    <string name="status_preparing">Preparing…</string>
+    <string name="status_fetching">Fetching video details…</string>
+    <string name="status_queued">Waiting in queue</string>
+    <string name="status_saving">Saving to Download/VideoSaver…</string>
+    <string name="status_downloading">Downloading · %1$d%%</string>
+
+    <string name="saved_toast">Saved: %1$s</string>
+    <string name="download_failed">Download failed</string>
+    <string name="canceled">Download canceled</string>
+    <string name="open_failed">No app here can open that file</string>
+    <string name="share_failed">Could not share that file</string>
+    <string name="delete_failed">Could not delete that file</string>
+    <string name="share_title">Share file via</string>
+    <string name="open_file">Open file</string>
+    <string name="delete_file">Delete file</string>
+
+    <string name="empty_state">No downloads yet.\nPaste a link above and the video lands here.</string>
+    <string name="file_meta">%1$s · %2$s</string>
+
+    <string name="notif_title">Downloading</string>
+    <string name="notif_waiting">Waiting for a download…</string>
+    <string name="notif_channel_name">Downloads</string>
+    <string name="notif_channel_desc">Shows the progress of running downloads</string>
+</resources>

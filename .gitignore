@@ -1,0 +1,23 @@
+# Gradle
+.gradle/
+build/
+app/build/
+.kotlin/
+
+# Android Studio / IntelliJ
+.idea/
+*.iml
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Machine specific SDK location
+local.properties
+
+# Signing
+keystore.properties
+*.jks
+*.keystore
+
+# Cortex workspace
+.cortex/
