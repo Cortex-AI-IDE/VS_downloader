@@ -15,7 +15,7 @@ Paste a link, tap Download, and the video is saved to your phone as a standard M
 [![No ads](https://img.shields.io/badge/ads-none-success.svg)](#privacy)
 [![No tracking](https://img.shields.io/badge/tracking-none-success.svg)](#privacy)
 
-[Download the APK](../../releases) | [Documentation](docs/) | [Troubleshooting](docs/TROUBLESHOOTING.md) | [Build from source](docs/BUILDING.md)
+[Download the APK](https://cortex-ai-ide.github.io/VS_downloader/download.html) | [Documentation](docs/) | [Troubleshooting](docs/TROUBLESHOOTING.md) | [Build from source](docs/BUILDING.md)
 
 </div>
 
@@ -85,6 +85,10 @@ architecture. Download the one that matches your phone:
 
 If you do not know your architecture, pick `arm64-v8a`. Every release also ships a
 `SHA256SUMS.txt` so you can verify the download.
+
+A guided version of this page, with a QR code for moving the link to your phone and a fix for
+each common install error, is at
+[Download and install](https://cortex-ai-ide.github.io/VS_downloader/download.html).
 
 1. Download the file on your phone. Android will ask to allow installs from your browser or
    file manager. Allow it once for that app.

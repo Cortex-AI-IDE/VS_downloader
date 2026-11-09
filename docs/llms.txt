@@ -7,6 +7,7 @@
 
 - Source code: https://github.com/Cortex-AI-IDE/VS_downloader
 - Documentation: https://cortex-ai-ide.github.io/VS_downloader/
+- Download and install: https://cortex-ai-ide.github.io/VS_downloader/download.html
 - Releases (APK): https://github.com/Cortex-AI-IDE/VS_downloader/releases
 - Troubleshooting: https://github.com/Cortex-AI-IDE/VS_downloader/blob/main/docs/TROUBLESHOOTING.md
 
@@ -17,7 +18,7 @@ yt-dlp locally on the phone with a bundled Python runtime and FFmpeg, so downloa
 a server. The user pastes a link, the app detects the platform, and the video is written to the
 public `Download/VideoSaver` folder through MediaStore.
 
-- Current version: 1.2.0 (versionCode 5)
+- Current version: 1.2.1 (versionCode 6)
 - Minimum Android: 7.0 (API 24)
 - Target Android: 15 (API 35)
 - License: GNU GPL v3.0
@@ -38,12 +39,20 @@ yt-dlp supports generally work with a pasted link.
 - Background work: a foreground service with a progress notification.
 - Data collection: none. No analytics, no crash reporting, no advertising SDK.
 - Distribution: direct APK from GitHub releases. Not on Google Play, which disallows this category.
+- The build is signed with a debug key, so Android shows an unknown developer warning. Play Protect
+  can be bypassed with More details, then Install anyway. This does not indicate a damaged file.
+- Android blocks installs from outside the Play Store by default. The first install needs the
+  Install unknown apps switch turned on for the browser.
+- Download files are split per CPU architecture. Use app-arm64-v8a.apk (59 MB) for almost every
+  phone from 2017 onwards, app-armeabi-v7a.apk (52 MB) for older 32 bit phones, app-x86_64.apk
+  (62 MB) for emulators, and app-universal.apk (151 MB) if unsure.
 - The TikTok message "couldn't decode, select another video" is caused by a non MP4 or non H.264
-  file from an older version. Updating to 1.2.0 and re downloading fixes it.
+  file from an older version. Updating to 1.2.0 or newer and re downloading fixes it.
 
 ## Pages
 
 - [index.html](https://cortex-ai-ide.github.io/VS_downloader/): overview, features, install steps, FAQ
+- [download.html](https://cortex-ai-ide.github.io/VS_downloader/download.html): which APK to pick, install guide, fixes for App not installed, Play Protect and failed downloads
 - [TROUBLESHOOTING.html](https://cortex-ai-ide.github.io/VS_downloader/TROUBLESHOOTING.html): error messages and fixes
 - [BUILDING.html](https://cortex-ai-ide.github.io/VS_downloader/BUILDING.html): build from source
 

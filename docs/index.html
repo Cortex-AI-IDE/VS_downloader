@@ -299,6 +299,13 @@
   .download-box pre { margin: 0; }
   .download-box pre code { font-size: 13px; word-break: break-all; white-space: pre-wrap; }
   .download-hint { font-size: 14.5px; margin: 10px 0 0; }
+  .install-help {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 20px 22px; margin: 0 0 26px;
+  }
+  .install-help h3 { margin: 0 0 6px; }
+  .install-help p { margin: 0 0 14px; font-size: 15.5px; }
+  .install-help .btn { width: 100%; justify-content: center; }
 
   footer { border-top: 1px solid var(--line); padding: 40px 0 60px; color: var(--muted); font-size: 14.5px; }
   footer .links { display: flex; flex-wrap: wrap; gap: 18px; margin-bottom: 16px; }
@@ -352,7 +359,7 @@
   </p>
 
   <div class="cta">
-    <a class="btn primary" href="https://github.com/Cortex-AI-IDE/VS_downloader/releases/latest/download/app-arm64-v8a.apk">Download the APK</a>
+    <a class="btn primary" href="download.html">Download for Android</a>
     <a class="btn ghost" href="https://github.com/Cortex-AI-IDE/VS_downloader">View source on GitHub</a>
     <a class="btn ghost" href="TROUBLESHOOTING.md">Troubleshooting</a>
   </div>
@@ -486,9 +493,18 @@
       </p>
     </div>
 
+    <div class="install-help">
+      <h3>Install problems, or nothing happens when you tap download?</h3>
+      <p>
+        Open the download page, which checks your phone, lists which file to use and explains every
+        common error in plain steps.
+      </p>
+      <a class="btn primary" href="download.html">Open the install guide</a>
+    </div>
+
     <ol class="steps">
-      <li><strong>Download the latest APK</strong> using the button or link above, or from the <a href="https://github.com/Cortex-AI-IDE/VS_downloader/releases">releases page</a>.</li>
-      <li><strong>Open the file on your phone</strong> and allow installs from this source when Android asks.</li>
+      <li><strong>Download the right APK</strong> using the button or table above. If you opened this page inside Instagram, Facebook or WhatsApp, open it in Chrome instead, because those in app browsers cannot save an APK.</li>
+      <li><strong>Open the file on your phone</strong> and allow installs from your browser when Android asks. Tap <em>More details</em> then <em>Install anyway</em> if Play Protect warns about an unknown developer.</li>
       <li><strong>Launch the app</strong> and wait a moment while the engine unpacks on the first run.</li>
       <li><strong>Paste a link and tap Download.</strong> The file appears in <code>Download/VideoSaver</code>.</li>
     </ol>
