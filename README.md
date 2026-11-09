@@ -73,9 +73,14 @@ Screenshots are added with each release. See the [latest release](../../releases
 
 ### Option 1: Install the APK
 
-1. Open the [Releases](../../releases) page.
-2. Download the latest `VideoSaver-<version>.apk`.
-3. Open the file on your phone and allow installs from this source when Android asks.
+1. Open the [latest release](../../releases/latest), or download the APK directly:
+   [app-debug.apk](https://github.com/Cortex-AI-IDE/VS_downloader/releases/latest/download/app-debug.apk)
+   (about 198 MB, because the APK bundles the engine for every CPU architecture).
+2. Open the file on your phone. Android will ask to allow installs from your browser or file
+   manager. Allow it once for that app.
+3. Google Play Protect may warn that the app is unknown because it is signed with a debug key,
+   not a Play Store key. Tap **More details**, then **Install anyway**. This is expected for any
+   sideloaded build.
 4. Launch Video Saver and wait for the engine to unpack on the first run.
 
 The app is distributed as a direct APK and is not on Google Play. Google Play policy does not

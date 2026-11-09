@@ -44,7 +44,7 @@
       "operatingSystem": "Android 7.0 and newer",
       "softwareVersion": "1.2.0",
       "fileFormat": "application/vnd.android.package-archive",
-      "downloadUrl": "https://github.com/Cortex-AI-IDE/VS_downloader/releases",
+      "downloadUrl": "https://github.com/Cortex-AI-IDE/VS_downloader/releases/latest/download/app-debug.apk",
       "codeRepository": "https://github.com/Cortex-AI-IDE/VS_downloader",
       "license": "https://www.gnu.org/licenses/gpl-3.0.html",
       "isAccessibleForFree": true,
@@ -281,6 +281,20 @@
   details[open] summary::after { content: "−"; }
   details p { margin: 12px 0 0; font-size: 15.5px; }
 
+  .download-box {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 22px; margin-bottom: 32px;
+  }
+  .download-head { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+  .download-box .btn { width: 100%; justify-content: center; }
+  .download-url-label {
+    font-size: 12.5px; text-transform: uppercase; letter-spacing: .06em;
+    margin: 20px 0 8px; color: var(--muted);
+  }
+  .download-box pre { margin: 0; }
+  .download-box pre code { font-size: 13px; word-break: break-all; white-space: pre-wrap; }
+  .download-hint { font-size: 14.5px; margin: 10px 0 0; }
+
   footer { border-top: 1px solid var(--line); padding: 40px 0 60px; color: var(--muted); font-size: 14.5px; }
   footer .links { display: flex; flex-wrap: wrap; gap: 18px; margin-bottom: 16px; }
   .disclaimer { font-size: 13.5px; color: #7c8496; max-width: 78ch; }
@@ -333,7 +347,7 @@
   </p>
 
   <div class="cta">
-    <a class="btn primary" href="https://github.com/Cortex-AI-IDE/VS_downloader/releases">Download the APK</a>
+    <a class="btn primary" href="https://github.com/Cortex-AI-IDE/VS_downloader/releases/latest/download/app-debug.apk">Download the APK</a>
     <a class="btn ghost" href="https://github.com/Cortex-AI-IDE/VS_downloader">View source on GitHub</a>
     <a class="btn ghost" href="TROUBLESHOOTING.md">Troubleshooting</a>
   </div>
@@ -431,9 +445,27 @@
 <section id="install">
   <div class="wrap">
     <h2>Install</h2>
-    <p class="section-note">The app is distributed as a direct APK through GitHub releases.</p>
+    <p class="section-note">
+      The app is distributed as a direct APK from GitHub releases. There is no Play Store listing,
+      no account, and no sign-up.
+    </p>
+
+    <div class="download-box">
+      <div class="download-head">
+        <span class="pill">Version 1.2.0</span>
+        <span class="pill">Android 7.0+</span>
+        <span class="pill">198 MB</span>
+      </div>
+      <a class="btn primary" href="https://github.com/Cortex-AI-IDE/VS_downloader/releases/latest/download/app-debug.apk">Download app-debug.apk</a>
+      <p class="download-url-label">Direct download link</p>
+<pre><code>https://github.com/Cortex-AI-IDE/VS_downloader/releases/latest/download/app-debug.apk</code></pre>
+      <p class="download-hint">
+        Open this link on your phone, or copy it to share. The link always serves the newest release.
+      </p>
+    </div>
+
     <ol class="steps">
-      <li><strong>Download the latest APK</strong> from the <a href="https://github.com/Cortex-AI-IDE/VS_downloader/releases">releases page</a>.</li>
+      <li><strong>Download the latest APK</strong> using the button or link above, or from the <a href="https://github.com/Cortex-AI-IDE/VS_downloader/releases">releases page</a>.</li>
       <li><strong>Open the file on your phone</strong> and allow installs from this source when Android asks.</li>
       <li><strong>Launch the app</strong> and wait a moment while the engine unpacks on the first run.</li>
       <li><strong>Paste a link and tap Download.</strong> The file appears in <code>Download/VideoSaver</code>.</li>
