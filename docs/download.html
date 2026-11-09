@@ -40,7 +40,7 @@
       "fileSize": "59MB",
       "license": "https://www.gnu.org/licenses/gpl-3.0.html",
       "isAccessibleForFree": true,
-      "downloadUrl": "https://github.com/Cortex-AI-IDE/VS_downloader/releases/latest/download/app-arm64-v8a.apk",
+      "downloadUrl": "https://cortex-ai-ide.github.io/VS_downloader/app-arm64-v8a.apk",
       "installUrl": "https://cortex-ai-ide.github.io/VS_downloader/download.html",
       "codeRepository": "https://github.com/Cortex-AI-IDE/VS_downloader",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
@@ -363,8 +363,7 @@
     </div>
 
     <div class="btn-stack">
-      <a class="btn primary"
-         href="https://github.com/Cortex-AI-IDE/VS_downloader/releases/latest/download/app-arm64-v8a.apk">
+      <a class="btn primary" href="app-arm64-v8a.apk" download>
         <span>Download APK<span class="sub">arm64-v8a, 59 MB, most phones</span></span>
       </a>
       <a class="btn ghost" href="https://github.com/Cortex-AI-IDE/VS_downloader/releases/latest">
@@ -383,7 +382,9 @@
         <dt>Version</dt>
         <dd>1.2.1</dd>
         <dt>Checksums</dt>
-        <dd><a href="https://github.com/Cortex-AI-IDE/VS_downloader/releases/latest/download/SHA256SUMS.txt">SHA256SUMS.txt</a></dd>
+        <dd><a href="SHA256SUMS.txt">SHA256SUMS.txt</a></dd>
+        <dt>Served from</dt>
+        <dd>This site, not GitHub. No redirect.</dd>
         <dt>Source code</dt>
         <dd><a href="https://github.com/Cortex-AI-IDE/VS_downloader">GitHub repository</a></dd>
       </dl>
@@ -409,7 +410,7 @@
         </thead>
         <tbody>
           <tr>
-            <td><a href="https://github.com/Cortex-AI-IDE/VS_downloader/releases/latest/download/app-arm64-v8a.apk">app-arm64-v8a.apk</a></td>
+            <td><a href="app-arm64-v8a.apk" download>app-arm64-v8a.apk</a></td>
             <td>59 MB</td>
             <td><strong>Almost every phone</strong> released since 2017</td>
           </tr>
@@ -508,9 +509,9 @@
       <ol>
         <li>Open the link in Chrome, not in the app you found it in.</li>
         <li>In the app, tap the three dot menu and choose <em>Open in browser</em> if it is offered.</li>
-        <li>If Chrome shows a page reading <em>504 Gateway Time-out</em>, the GitHub file host is busy. Wait one minute and tap the button again.</li>
+        <li>The arm64 file is stored on this site, so it never passes through GitHub. If an older link showed <em>504 Gateway Time-out</em>, go back to the download button at the top of this page instead.</li>
         <li>If it still fails, switch between Wi-Fi and mobile data, then retry.</li>
-        <li>As a last resort, open the <a href="https://github.com/Cortex-AI-IDE/VS_downloader/releases/latest">releases page</a> and tap the file name there.</li>
+        <li>The <a href="https://github.com/Cortex-AI-IDE/VS_downloader/releases/latest">releases page</a> holds the other architectures. Use it only if the arm64 file is wrong for your phone.</li>
       </ol>
     </div>
 
@@ -564,7 +565,7 @@
     <p>
       Every release publishes a checksum file, so you can confirm the APK arrived intact. On a
       computer, compute the hash and compare it with the matching line in
-      <a href="https://github.com/Cortex-AI-IDE/VS_downloader/releases/latest/download/SHA256SUMS.txt">SHA256SUMS.txt</a>.
+      <a href="SHA256SUMS.txt">SHA256SUMS.txt</a>.
     </p>
     <div class="copyrow">
       <input id="sumcmd" type="text" readonly value="sha256sum app-arm64-v8a.apk" aria-label="Checksum command">

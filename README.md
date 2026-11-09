@@ -78,13 +78,17 @@ architecture. Download the one that matches your phone:
 
 | File | Size | Use it for |
 | --- | --- | --- |
-| [app-arm64-v8a.apk](https://github.com/Cortex-AI-IDE/VS_downloader/releases/latest/download/app-arm64-v8a.apk) | 59 MB | Almost every phone released since 2017. Start here. |
+| [app-arm64-v8a.apk](https://cortex-ai-ide.github.io/VS_downloader/app-arm64-v8a.apk) | 59 MB | Almost every phone released since 2017. Start here. |
 | [app-armeabi-v7a.apk](https://github.com/Cortex-AI-IDE/VS_downloader/releases/latest/download/app-armeabi-v7a.apk) | 52 MB | Older 32-bit phones |
 | [app-x86_64.apk](https://github.com/Cortex-AI-IDE/VS_downloader/releases/latest/download/app-x86_64.apk) | 62 MB | Android emulators |
 | [app-universal.apk](https://github.com/Cortex-AI-IDE/VS_downloader/releases/latest/download/app-universal.apk) | 151 MB | Fallback if you are unsure which one you need |
 
-If you do not know your architecture, pick `arm64-v8a`. Every release also ships a
-`SHA256SUMS.txt` so you can verify the download.
+If you do not know your architecture, pick `arm64-v8a`. That file is also published on the
+project website at
+[cortex-ai-ide.github.io/VS_downloader/app-arm64-v8a.apk](https://cortex-ai-ide.github.io/VS_downloader/app-arm64-v8a.apk),
+which is the faster route on a phone because it is served directly rather than through a release
+redirect. Every release also ships a `SHA256SUMS.txt` so you can verify the download, and a copy
+sits next to the hosted APK.
 
 A guided version of this page, with a QR code for moving the link to your phone and a fix for
 each common install error, is at

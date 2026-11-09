@@ -7,6 +7,14 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [1.2.1] - 2026-11-09
 
+### Added
+
+- The arm64 APK is hosted on the project website, so a download on a phone no longer depends on
+  the GitHub release redirect. `SHA256SUMS.txt` is published next to it.
+- A mobile first download and install guide at `docs/download.html`. It detects the phone, lists
+  each architecture with its size and the device it suits, and gives a fix for each common install
+  error.
+
 ### Changed
 
 - The build now produces one APK per CPU architecture instead of a single universal APK. The
